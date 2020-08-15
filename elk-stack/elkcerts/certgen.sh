@@ -4,7 +4,7 @@
 openssl genrsa -passout pass:"$1" -des3 -out rootCA.key 2048
 
 # Generate Root PEM (rootCA.pem) with 1024 days validity.
-openssl req -passin pass:"$1" -subj "/C=US/ST=Random/L=Random/O=Global Security/OU=IT Department/CN=Local Certificate"  -x509 -new -nodes -key rootCA.key -sha256 -days 1024 -out rootCA.pem -out rootCA.crt
+openssl req -passin pass:"$1" -subj "/C=US/ST=Random/L=Random/O=Global Security/OU=IT Department/CN=Local Certificate"  -x509 -new -nodes -key rootCA.key -sha256 -days 1024 -out rootCA.pem
 
 # Add root cert as trusted cert
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
@@ -13,6 +13,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         update-ca-trust force-enable
         cp rootCA.crt /etc/pki/ca-trust/source/anchors/
         update-ca-trust
+        #meeting ES requirement
+        sysctl -w vm.max_map_count=262144
 elif [[ "$OSTYPE" == "darwin"* ]]; then
         # Mac OSX
         security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain rootCA.pem
