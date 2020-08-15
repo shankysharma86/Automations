@@ -11,7 +11,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         # Linux
         yum -y install ca-certificates
         update-ca-trust force-enable
-        cp root.crt /etc/pki/ca-trust/source/anchors/
+        cp rootCA.crt /etc/pki/ca-trust/source/anchors/
         update-ca-trust
 elif [[ "$OSTYPE" == "darwin"* ]]; then
         # Mac OSX
