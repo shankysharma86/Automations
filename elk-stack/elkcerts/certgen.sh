@@ -11,7 +11,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         # Linux
         yum -y install ca-certificates
         update-ca-trust force-enable
-        cp rootCA.crt /etc/pki/ca-trust/source/anchors/
+        cp rootCA.pem /etc/pki/ca-trust/source/anchors/
         update-ca-trust
         #meeting ES requirement
         sysctl -w vm.max_map_count=262144
