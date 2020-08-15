@@ -22,6 +22,9 @@ services:
       - xpack.security.transport.ssl.certificate=${ESCERTSDIR}/es01.crt
       - xpack.security.transport.ssl.key=${ESCERTSDIR}/es01.key
     ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
       memlock:
         soft: -1
         hard: -1
@@ -62,6 +65,9 @@ services:
       - xpack.security.transport.ssl.certificate=${ESCERTSDIR}/es02.crt
       - xpack.security.transport.ssl.key=${ESCERTSDIR}/es02.key
     ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
       memlock:
         soft: -1
         hard: -1
@@ -94,6 +100,9 @@ services:
       - xpack.security.transport.ssl.certificate=${ESCERTSDIR}/es03.crt
       - xpack.security.transport.ssl.key=${ESCERTSDIR}/es03.key
     ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
       memlock:
         soft: -1
         hard: -1
